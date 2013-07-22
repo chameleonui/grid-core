@@ -1,0 +1,203 @@
+// =============================================================================
+// Grid Core Mixins, Functions and Variables
+// =============================================================================
+// Inspired by Zurb's Foundation 5
+
+// Mixins
+// =============================================================================
+grid-column(column-class, gutter-width){
+    .{column-class}{
+        float: left;
+        min-height: 1px;
+        position: relative;
+        padding: 0 (gutter-width / 2);
+
+        + .{column-class}:last-child,
+        + .{column-class}.end {
+            float: right
+        }
+    }
+} 
+
+// =============================================================================
+
+grid-column-span(span-class, columns-count){    
+    for i in 1..columns-count {
+        .{span-class}-{i} {
+            width: percentage(i/columns-count);
+        }
+    }
+}
+
+// =============================================================================
+
+grid-column-offset(offset-class, columns-count){    
+    for i in 1..columns-count {
+        .{offset-class}-{i} {
+            margin-left: percentage(i/columns-count);
+        }
+    }
+}
+
+// =============================================================================
+
+grid-column-pull(pull-class, columns-count){    
+    for i in 1..columns-count {
+        .{pull-class}-{i} {
+            right: percentage(i/grid-columns-count);
+        }
+    }
+}
+
+// =============================================================================
+
+grid-column-push(push-class, columns-count){    
+    for i in 1..columns-count {
+        .{push-class}-{i} {
+            left: percentage(i/grid-columns-count);
+        }
+    }
+}
+
+// =============================================================================
+
+grid-column-centered(column-class, centered-class){    
+        .{column-class}.{centered-class} {
+            float: none !important;   
+            margin-left: auto;
+            margin-right: auto;
+        }
+}
+
+// =============================================================================
+
+grid-column-uncentered(column-class, uncentered-class){    
+        .{column-class}.{uncentered-class} {
+            float: left !important;
+            margin-left: 0;
+            margin-right: 0;
+        }
+}
+
+// =============================================================================
+
+grid-visibility(show-classes, hide-classes, postfix){
+    show-list = ();
+    for class in show-classes {
+        push(show-list, class + "-" + postfix);
+    }
+
+    if (show-list != null) {
+       {selectorize('.', show-list)} {
+            display: inherit !important;
+        }
+    }
+    
+    hide-list = ();
+    for class in hide-classes {
+        push(hide-list, class + "-" + postfix);
+    }
+
+    if (hide-list != null) {
+        {selectorize('.', hide-list)} {
+            display: none !important;
+        }
+    }
+}
+
+// =============================================================================
+
+grid-row(row-class, row-width, row-max-width, gutter-width){
+    .{row-class} {
+        width: row-width;
+        max-width: row-max-width;
+        margin: 0 auto;
+        clearfix();
+        
+        .{row-class} {
+            width: auto;
+            max-width: none;
+            width: auto;
+            margin-left: -(gutter-width / 2);
+            margin-right: -(gutter-width / 2);
+        }
+
+    }
+}
+
+// =============================================================================
+grid-row-tabular(row-tabular-class, column-class){
+    .{row-tabular-class} {
+        display: table;
+        width: 100%;
+
+        > .{column-class} {
+            display: table-cell;
+            vertical-align: middle;
+            float: none;
+            
+            &.vertical-top { vertical-align: top; }
+            &.vertical-bottom { vertical-align: bottom; }
+        }
+
+        .{column-class} + .{column-class}:last-child, 
+        .{column-class} + .{column-class}.end { 
+            float: none;
+        }
+        
+    }
+}
+
+// =============================================================================
+// Mixin to create different block-grids. 
+// You can apply per-row and spacing options.
+// Setting base-style to false will ommit default styles.
+block-grid(per-row = false, gutter = 1, base-style = true) {
+    
+    if (base-style) {
+        display: block;
+        padding: 0;
+        margin: 0 (-(gutter/2));
+        clearfix();
+
+        & > li {
+            display: inline;
+            height: auto;
+            float: left;
+            padding: 0 (gutter/2) gutter;
+        }
+    }
+
+    if (per-row) {
+        & > li {
+            width: percentage(1/per-row);
+            padding: 0 (gutter/2) gutter;
+
+            &:nth-of-type(n) { clear: none; }
+            &:nth-of-type({per-row}n+1) { clear: both; }
+        }
+    }    
+    
+}
+
+// =============================================================================
+
+grid-debug(bg-color, debug-class, row-class, column-class, tiles-class) {
+    .{debug-class} {
+        .{row-class} {
+            background-color: bg-color;
+            margin-bottom: 5px;
+        }
+        
+        .{column-class} {
+            background-color: bg-color;
+        }
+
+        if (use-grid-tails){
+            [class*={'"' + tiles-class + '"'}] > li { 
+                outline: 1px solid fuchsia;
+            }
+        }
+    }
+}
+

@@ -1,0 +1,15 @@
+{
+  "name": "grid",
+  "repo": "chameleonui/grid",
+  "description": "Common fixed/responsive grid core mixins",
+  "version": "1.0.0",
+  "keywords": [],
+  "dependencies": {
+    "chameleonui/utils": "*"
+    },
+  "development": {},
+  "license": "MIT",
+  "styles": [
+    "grid-core.styl"
+  ]
+}
