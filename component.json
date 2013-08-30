@@ -1,8 +1,8 @@
 {
   "name": "grid",
-  "repo": "chameleonui/grid",
+  "repo": "chameleonui/grid-core",
   "description": "Common fixed/responsive grid core mixins",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords": [],
   "dependencies": {
     "chameleonui/utils": "*"
