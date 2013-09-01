@@ -28,6 +28,8 @@ grid-column-uncentered(column-class, uncentered-class)
 
 grid-visibility(show-classes, hide-classes, postfix)
 
+grid-visibility-hide(hide-classes, postfix)
+
 grid-row(row-class, row-width, row-max-width, gutter-width)
 
 // Table like row - enables vertical centering

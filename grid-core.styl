@@ -107,6 +107,21 @@ grid-visibility(show-classes, hide-classes, postfix){
 
 // =============================================================================
 
+grid-visibility-hide(hide-classes, postfix){
+    hide-list = ();
+    for class in hide-classes {
+        push(hide-list, class + "-" + postfix);
+    }
+
+    if (hide-list != null) {
+        {selectorize('.', hide-list)} {
+            display: none !important;
+        }
+    }
+}
+
+// =============================================================================
+
 grid-row(row-class, row-width, row-max-width, gutter-width){
     .{row-class} {
         width: row-width;
