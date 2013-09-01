@@ -1,3 +1,7 @@
+### v1.1.1
+
+- Added max width to tabular row
+
 ### v1.1.0
 
 - Added seprated grig-visibility-hide mixin
