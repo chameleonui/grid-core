@@ -32,10 +32,12 @@ grid-visibility-hide(hide-classes, postfix)
 
 grid-row(row-class, row-width, row-max-width, gutter-width)
 
+grid-row-collapsed(row-class, column-class)
+
 // Table like row - enables vertical centering
 grid-row-tabular(row-tabular-class, column-class)
 
-// Mixin to create different block-grids e.g. "tiles" 
+// Mixin to create different block-grids e.g. "tiles"
 block-grid(per-row = false, gutter = 1, base-style = true)
 
 grid-debug(bg-color, debug-class, row-class, column-class, tiles-class)
@@ -43,7 +45,7 @@ grid-debug(bg-color, debug-class, row-class, column-class, tiles-class)
 
 ## Author(s)
 
-Edgedesign s.r.o. – Tomas Kuba
+[Edgedesign s.r.o.](http://www.edgedesing.cz) – [Tomas Kuba](https://github.com/tomaskuba), [Daniel Sitek](https://github.com/danielsitek)
 
 ## License
 

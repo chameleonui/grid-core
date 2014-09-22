@@ -1,3 +1,7 @@
+### v1.1.2
+
+- Created mixin for generating row-collapsed
+
 ### v1.1.1
 
 - Added max width to tabular row

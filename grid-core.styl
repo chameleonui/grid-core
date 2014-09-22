@@ -17,11 +17,11 @@ grid-column(column-class, gutter-width){
             float: right
         }
     }
-} 
+}
 
 // =============================================================================
 
-grid-column-span(span-class, columns-count){    
+grid-column-span(span-class, columns-count){
     for i in 1..columns-count {
         .{span-class}-{i} {
             width: percentage(i/columns-count);
@@ -31,7 +31,7 @@ grid-column-span(span-class, columns-count){
 
 // =============================================================================
 
-grid-column-offset(offset-class, columns-count){    
+grid-column-offset(offset-class, columns-count){
     for i in 1..columns-count {
         .{offset-class}-{i} {
             margin-left: percentage(i/columns-count);
@@ -41,7 +41,7 @@ grid-column-offset(offset-class, columns-count){
 
 // =============================================================================
 
-grid-column-pull(pull-class, columns-count){    
+grid-column-pull(pull-class, columns-count){
     for i in 1..columns-count {
         .{pull-class}-{i} {
             right: percentage(i/grid-columns-count);
@@ -51,7 +51,7 @@ grid-column-pull(pull-class, columns-count){
 
 // =============================================================================
 
-grid-column-push(push-class, columns-count){    
+grid-column-push(push-class, columns-count){
     for i in 1..columns-count {
         .{push-class}-{i} {
             left: percentage(i/grid-columns-count);
@@ -61,9 +61,9 @@ grid-column-push(push-class, columns-count){
 
 // =============================================================================
 
-grid-column-centered(column-class, centered-class){    
+grid-column-centered(column-class, centered-class){
         .{column-class}.{centered-class} {
-            float: none !important;   
+            float: none !important;
             margin-left: auto;
             margin-right: auto;
         }
@@ -71,7 +71,7 @@ grid-column-centered(column-class, centered-class){
 
 // =============================================================================
 
-grid-column-uncentered(column-class, uncentered-class){    
+grid-column-uncentered(column-class, uncentered-class){
         .{column-class}.{uncentered-class} {
             float: left !important;
             margin-left: 0;
@@ -92,7 +92,7 @@ grid-visibility(show-classes, hide-classes, postfix){
             display: inherit !important;
         }
     }
-    
+
     hide-list = ();
     for class in hide-classes {
         push(hide-list, class + "-" + postfix);
@@ -128,7 +128,7 @@ grid-row(row-class, row-width, row-max-width, gutter-width){
         max-width: row-max-width;
         margin: 0 auto;
         clearfix();
-        
+
         .{row-class} {
             width: auto;
             max-width: none;
@@ -136,6 +136,24 @@ grid-row(row-class, row-width, row-max-width, gutter-width){
             margin-right: -(gutter-width / 2);
         }
 
+    }
+}
+
+// =============================================================================
+
+grid-row-collapsed(row-class, column-class) {
+    .{row-class}.{row-class}-collapsed,
+    .{row-class} .{row-class}.{row-class}-collapsed,
+    .{row-class}.{row-class}-collapsed .{row-class} {
+        margin-left: 0
+        margin-right: 0
+    }
+
+    .{row-class}.{row-class}-collapsed {
+        & > .{column-class} {
+            padding-left: 0
+            padding-right: 0
+        }
     }
 }
 
@@ -150,25 +168,25 @@ grid-row-tabular(row-tabular-class, column-class, row-max-width){
             display: table-cell;
             vertical-align: middle;
             float: none;
-            
+
             &.vertical-top { vertical-align: top; }
             &.vertical-bottom { vertical-align: bottom; }
         }
 
-        .{column-class} + .{column-class}:last-child, 
-        .{column-class} + .{column-class}.end { 
+        .{column-class} + .{column-class}:last-child,
+        .{column-class} + .{column-class}.end {
             float: none;
         }
-        
+
     }
 }
 
 // =============================================================================
-// Mixin to create different block-grids. 
+// Mixin to create different block-grids.
 // You can apply per-row and spacing options.
 // Setting base-style to false will ommit default styles.
 block-grid(per-row = false, gutter = 1, base-style = true) {
-    
+
     if (base-style) {
         display: block;
         padding: 0;
@@ -191,8 +209,8 @@ block-grid(per-row = false, gutter = 1, base-style = true) {
             &:nth-of-type(n) { clear: none; }
             &:nth-of-type({per-row}n+1) { clear: both; }
         }
-    }    
-    
+    }
+
 }
 
 // =============================================================================
@@ -203,13 +221,13 @@ grid-debug(bg-color, debug-class, row-class, column-class, tiles-class) {
             background-color: bg-color;
             margin-bottom: 5px;
         }
-        
+
         .{column-class} {
             background-color: bg-color;
         }
 
         if (use-grid-tails){
-            [class*={'"' + tiles-class + '"'}] > li { 
+            [class*={'"' + tiles-class + '"'}] > li {
                 outline: 1px solid fuchsia;
             }
         }
